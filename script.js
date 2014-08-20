@@ -49,7 +49,7 @@ function addTask() {
     var title = document.getElementById("title"),
         description = document.getElementById("description");
     
-    if(title.value == "" || description.value == "") {
+    if(title.value == "" && description.value == "") {
         
     } else {
         var newTask = JSON.stringify({
