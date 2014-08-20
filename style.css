@@ -240,6 +240,7 @@ label {
     position: absolute;
     top: -250px;
     width: 580px;
+    min-height: 68px;
     
     background: #fff;
     border-radius: 2px;
