@@ -192,7 +192,7 @@ function deleteTask() {
             setTimeout(function(){
                 document.getElementById("tasks").removeChild(card);
                 updatePosition();
-            },500);
+            },300);
             
             break;
         }
