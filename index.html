@@ -1,1 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+        <script src="http://use.edgefonts.net/source-sans-pro:n4,n9,n7,i7,i4,n3,i3,n6,i6,i9,n2,i2:all.js"></script>
+        <title>Tasklist</title>
+    </head>
     
+    <body>
+        <h1>Tasklist</h1>
+        <div id="background"></div>
+        <div class="wrapper">
+            <div id="addTask">
+                <div id="addTaskButtom">
+                    <svg viewBox="0 0 24 24" height="26px" width="26px" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><path d="M19,13h-6v6h-2v-6H5v-2h6V5h2v6h6V13z"></path></g></svg>
+                </div>
+                <div class="wrapper">
+                    <label for="title">Title</label>
+                    <input id="title">
+                    <label for="description">Description</label>
+                    <textarea id="description"></textarea>
+
+                    <div id="createTask">Add task</div>
+                 </div>
+            </div>
+        </div>
+        
+        <article id="tasks">
+            
+        </article>
+    </body>
+    <script src="script.js"></script>
+</html>
