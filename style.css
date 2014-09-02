@@ -3,6 +3,14 @@
     -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
+    font-family: source-sans-pro;
+    
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 body {
@@ -31,8 +39,6 @@ body > h1 {
     left: 50%;
     margin-left: -300px;
     
-    height: px;
-    
     text-align: left;
     font-size: 58px;
     font-weight: 200;
@@ -41,7 +47,7 @@ body > h1 {
 
 #background {
     display: none;
-    position: absolute;
+    position: fixed;
     z-index: 18;
     
     width: 100%;
@@ -141,12 +147,12 @@ body > .wrapper {
     margin-right: -200px;
     
     width: 400px;
-    height: 240px;
+    height: 252px;
     
     border-radius: 4px;
     
     box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2),
-                0 6px 20px 0 rgba(0, 0, 0, 0.19)
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #addTask .wrapper {
@@ -181,7 +187,7 @@ label {
     color: #fff;
 }
 
-#addTask .wrapper #title {
+#title {
     position: relative;
     width: 370px;
     
@@ -192,9 +198,10 @@ label {
     border-radius: 2px;
     
     padding-left: 5px;
+    box-shadow: inset 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
-#addTask .wrapper #description {
+#description {
     position: relative;
     width: 370px;
     max-width: 370px;
@@ -206,20 +213,22 @@ label {
     height: 82px;
     
     border-radius: 2px;
+    box-shadow: inset 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
 #createTask {
     position: relative;
     float: right;
     
-    height: 30px;
-    line-height: 30px;
-    padding: 0 5px;
-    margin: 8px -30px 0 0;
-    
-    background: #eee;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 20px;
+    margin: 14px -30px;
+    font-size: 20px;
+   
+    background: #fff;
     border-radius: 2px;
-    color: #5677fc;
+    color: #536dfe;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26),
                 0 2px 10px 0 rgba(0, 0, 0, 0.16);
     cursor: pointer;
@@ -240,22 +249,30 @@ label {
     position: absolute;
     top: -250px;
     width: 580px;
+    min-height: 70px;
     
     background: #fff;
     border-radius: 2px;
     
-    margin-left: 10px;
+    left: 10px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26),
                 0 2px 10px 0 rgba(0, 0, 0, 0.16);
     transition: 0.5s ease-out;
 }
 
-.task h1 {
+.task > h1 {
     font-size: 26px;
     font-weight: 400;
     
     width: 520px;
     padding: 10px 0 0 10px;
+    
+    -webkit-touch-callout: text;
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
 .task p {
@@ -263,20 +280,24 @@ label {
     font-size: 18px;
     padding: 4px 0 8px 10px;
     word-break: break-all;
+    
+    -webkit-touch-callout: text;
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
 .delete,
 .done,
-.restore {
+.restore,
+.menu {
     position: absolute;
     
     height: 24px;
     width: 24px;
     
-    font-weight: 600;
-    font-size: 24px;
-    
-    line-height: 30px;
     text-align: center;
     
     cursor: pointer;
@@ -284,28 +305,85 @@ label {
 }
 
 svg {
-    transition: 0.3s ease-out;
+/*    transition: 0.2s ease-out;*/
 }
 
+.menu {
+    height: 20px;
+    width: 20px;
+    
+    top: 8px;
+    right: 4px;
+}
+
+.menu > svg {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+}
+
+.menu > svg:hover {
+    fill: #5677fc;
+}
+
+.options {
+    position: absolute;
+    top: -10px;
+    right: 0;
+    
+    width: 0;
+    height: 40px;
+    overflow: hidden;
+    
+    background: #333;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26),
+                0 2px 10px 0 rgba(0, 0, 0, 0.16);
+    cursor: default;
+    
+    border-radius: 2px;
+    
+    transition: 0.2s ease-out;
+}
+
+.options svg {
+    opacity: 0;
+}
+
+.options.expanded svg {
+    opacity: 1;
+}
+
+.options.expanded {
+    width: 90px;
+}
+
+.options .edit,
 .delete {
-    font-family: arial;
-    font-size: 30px;
+    position: relative;
+    float: left;
     
-    top: 5px;
-    right: 5px;
+    margin-top: 8px;
+    margin-left: 10px;
     
-/*    -webkit-transform: rotate(45deg);*/
+    height: 24px;
+    width: 24px;
     
-    border-radius: 15px;
+    fill: #fff;
+    
+    cursor: pointer;
 }
 
-.delete svg:hover {
-    fill: #E51C23;
+.delete:hover {
+    fill: #e51c23;
+}
+
+.edit:hover {
+    fill: #42BD41;
 }
 
 .done {
-    bottom: 5px;
-    right: 5px;
+    bottom: 4px;
+    right: 4px;
 }
 
 .done svg:hover {
@@ -334,5 +412,114 @@ svg {
 .task .date {
     font-size: 14px;
     padding: 0 0 5px 10px;
+}
+
+.edit.task {
+    top: 50px !important;
+    z-index: 200;
     
+    height: 284px !important;
+    width: 400px;
+    left: 100px;
+    
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2),
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.edit.task * {
+    opacity: 0;
+}
+
+.edit.task.show * {
+    opacity: 1;
+}
+
+.edit.task h1 {
+    width: 400px;
+    height: 60px;
+    padding-left: 20px;
+    padding-top: 20px;
+    
+    font-weight: 300;
+}
+
+.edit.task textarea {
+    position: relative;
+    width: 370px;
+    max-width: 370px;
+    max-height: 100px;
+    right: 15px;
+    margin-top: 10px;
+    margin-left: 200px;
+    
+    float: right;
+    border: none;
+    height: 100px;
+    clear: left;
+    
+/*    border: 1px solid #5677fc;*/
+    border-radius: 2px;
+    font-size: 18px;
+    background: #eee;
+    
+    padding-left: 5px;
+    
+    box-shadow: inset 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.edit.task input {
+    position: relative;
+    width: 370px;
+    right: 15px;
+    margin-top: 10px;
+    margin-left: 200px;
+    
+    float: right;
+    border: none;
+    height: 32px;
+    clear: left;
+    
+/*    border-bottom: 2px solid #5677fc;*/
+    border-radius: 2px;
+    font-size: 18px;
+    background: #eee;
+    padding-left: 5px;
+    
+    box-shadow: inset 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+#save, #cancel {
+    position: relative;
+    float: right;
+    
+    height: 36px;
+    line-height: 36px;
+    padding: 0 20px;
+    margin: 20px 15px;
+    font-size: 20px;
+   
+    background: #536dfe;
+    border-radius: 2px;
+    color: #fff;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26),
+                0 2px 10px 0 rgba(0, 0, 0, 0.16);
+    cursor: pointer;
+    
+    transition: 0.3s ease-out;
+}
+
+#cancel {
+    margin-right: 5px;
+    color: #fff;
+}
+
+#save:hover,
+#cancel:hover {
+    background: #3d5afe;
+}
+
+#save:active,
+#cancel:active {
+    box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.26);
+    background: #3d5afe;
 }
