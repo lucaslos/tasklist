@@ -314,7 +314,28 @@ function editTask() {
         cacheHTML = card.innerHTML,
         cacheClass = card.className;
     
-    card.className = "edit task";
+    bg.removeEventListener("click", cancelEdit, false);
+    
+    function updateHeight() {
+        var currentHeight = 0;
+        
+        for(i=0; i<card.children.length; i++){
+            if(card.children[i].clientHeight != 20 && card.children[i].clientHeight != 24) {
+                currentHeight += card.children[i].clientHeight;
+            }
+        }
+        
+        if (currentHeight < 70){
+            card.style.height = "70px";
+        } else {
+            card.style.height = currentHeight+"px";
+        }
+    }
+    
+    updateHeight();
+    
+    card.setAttribute("class","edit task");
+    
     show(bg);
     setTimeout(function(){
         bg.style.opacity = "1";
@@ -369,7 +390,13 @@ function editTask() {
                     
                 }
                 
+                updateHeight();
+                
                 this.addEventListener("click", editTask, false);
+                
+                setTimeout(function(){
+                    bg.addEventListener("click", cancelEdit, false);
+                },500);
                 
                 setTimeout(updatePosition, 600);
             }
@@ -386,7 +413,13 @@ function editTask() {
                 
                 card.innerHTML = cacheHTML;
                 
+                updateHeight();
+                
                 this.addEventListener("click", editTask, false);
+                
+                setTimeout(function(){
+                    bg.addEventListener("click", cancelEdit, false);
+                },500);
                 
                 setTimeout(updatePosition, 600);
             }
