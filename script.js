@@ -166,7 +166,7 @@ function updatePosition() {
     for(i=0; i<cards.length; i++) {
         if(cards[i].className != "task finished") {
             cards[i].style.top = above+(6*counter)+"px";
-            cards[i].style.height = cards[i].clientHeight+"px";
+            cards[i].style.height = "";
             
             above += cards[i].clientHeight;
             counter++;
@@ -177,7 +177,7 @@ function updatePosition() {
         
         if(cards[i].className == "task finished") {
             cards[i].style.top = above+(6*counter)+"px";
-            cards[i].style.height = cards[i].clientHeight+"px";
+            cards[i].style.height = "";
             
             above += cards[i].clientHeight;
             counter++;
