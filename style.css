@@ -267,6 +267,7 @@ label {
     width: 520px;
     padding: 10px 0 0 10px;
     word-wrap: break-word;
+    white-space: pre;
     
     -webkit-touch-callout: text;
     -webkit-user-select: text;
@@ -281,6 +282,7 @@ label {
     font-size: 18px;
     padding: 4px 0 8px 10px;
     word-wrap: break-word;
+    white-space: pre;
     
     -webkit-touch-callout: text;
     -webkit-user-select: text;
