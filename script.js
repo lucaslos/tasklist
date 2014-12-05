@@ -312,7 +312,8 @@ function editTask() {
         addTask = document.getElementById("addTask"),
         id = card.id,
         cacheHTML = card.innerHTML,
-        cacheClass = card.className;
+        cacheClass = card.className,
+        cacheTop = card.style.top;
     
     card.className = "edit task";
     show(bg);
@@ -321,6 +322,7 @@ function editTask() {
     },1);
     
     document.body.style.overflowY = "hidden";
+    
     addTask.style.zIndex = "-1";
     
     for(i=0; i<tasks.length; i++) {
@@ -333,6 +335,7 @@ function editTask() {
             document.getElementById("background").addEventListener("click", cancelEdit, false);
             
             card.className = "edit task";
+            card.style.top = document.body.scrollTop+50+"px";
             
             setTimeout(function(){
                 card.className = "edit task show";
@@ -359,6 +362,7 @@ function editTask() {
                     localStorage.setItem("tasks", JSON.stringify(tasks));
 
                 card.className = cacheClass;
+                card.style.top = cacheTop;
                 
                 if(task.status){
                 
@@ -377,6 +381,7 @@ function editTask() {
             function cancelEdit() {
                 
                 card.className = cacheClass;
+                card.style.top = cacheTop;
                 bg.style.opacity = "0";
                 setTimeout(function(){
                     hide(bg);
