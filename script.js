@@ -343,7 +343,6 @@ function editTask() {
             
             function confirmEdit() {
                 
-                card.className = cacheClass;
                 bg.style.opacity = "0";
                 setTimeout(function(){
                     hide(bg);
@@ -374,6 +373,14 @@ function editTask() {
                 }
                 
                 this.addEventListener("click", editTask, false);
+                
+                var newHeight = card.children[0].clientHeight+card.children[1].clientHeight;
+                
+                if(newHeight < 70){
+                    card.style.height = "70px";
+                } else {
+                    card.style.height = newHeight+"px";
+                }
                 
                 setTimeout(updatePosition, 600);
             }
