@@ -279,6 +279,7 @@ body > .wrapper {
     font-size: 18px;
     padding: 4px 0 8px 10px;
     word-wrap: break-word;
+    white-space: pre-line;
     
     -webkit-touch-callout: text;
     -webkit-user-select: text;
