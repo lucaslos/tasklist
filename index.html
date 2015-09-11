@@ -4,7 +4,9 @@
         <meta name="viewport" content="width=device-width">
         <meta charset="UTF-8">
         <link rel="stylesheet" href="style.css">
-        <script src="http://use.edgefonts.net/source-sans-pro:n4,n9,n7,i7,i4,n3,i3,n6,i6,i9,n2,i2:all.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,300italic,300,100italic,100,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
         <title>Tasklist</title>
     </head>
     
@@ -14,15 +16,12 @@
         <div class="wrapper">
             <div id="addTask">
                 <div id="addTaskButtom">
-                    <svg viewBox="0 0 24 24" height="26px" width="26px" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><path d="M19,13h-6v6h-2v-6H5v-2h6V5h2v6h6V13z"></path></g></svg>
+                    <i class="material-icons">add</i>
                 </div>
                 <div class="wrapper">
-                    <label for="title">Title</label>
-                    <input id="title">
-                    <label for="description">Description</label>
-                    <textarea id="description"></textarea>
-
-                    <div id="createTask">Add task</div>
+                    <input id="title" placeholder="Title">
+                    <textarea id="description" placeholder="Description"></textarea>
+                    <div id="createTask">ADD TASK</div>
                  </div>
             </div>
         </div>

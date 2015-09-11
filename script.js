@@ -61,7 +61,8 @@ function addTask() {
             description: description.value,
             id: new Date().getTime(),
             status: true,
-            ended: null
+            ended: null,
+            highlighted: false
         });
         
         tasks.unshift(newTask);
@@ -78,7 +79,9 @@ function addTask() {
         elem.className = "task";
         elem.id = data.id;
         elem.setAttribute("name", "task");
-        elem.innerHTML = '<h1>'+data.title+'</h1><p>'+data.description+'</p><div name="menu" class="menu"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" display: block;"><g><path d="M12,8c1.1,0,2-0.9,2-2s-0.9-2-2-2c-1.1,0-2,0.9-2,2S10.9,8,12,8z M12,10c-1.1,0-2,0.9-2,2s0.9,2,2,2c1.1,0,2-0.9,2-2S13.1,10,12,10z M12,16c-1.1,0-2,0.9-2,2s0.9,2,2,2c1.1,0,2-0.9,2-2S13.1,16,12,16z"></path></g></svg><div class="options"><div class="delete" name="delete"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><polygon points="19,6.4 17.6,5 12,10.6 6.4,5 5,6.4 10.6,12 5,17.6 6.4,19 12,13.4 17.6,19 19,17.6 13.4,12 "></polygon></g></svg></div><div class="edit" name="edit"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><path d="M3,17.2V21h3.8L17.8,9.9l-3.8-3.8L3,17.2z M20.7,7c0.4-0.4,0.4-1,0-1.4l-2.3-2.3c-0.4-0.4-1-0.4-1.4,0l-1.8,1.8l3.8,3.8L20.7,7z"></path></g></svg></div></div></div><div name="done" class="done"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><polygon points="9,16.2 4.8,12 3.4,13.4 9,19 21,7 19.6,5.6 "></polygon></g></svg></div>';
+        elem.innerHTML = '<h1>'+data.title+'</h1><p>'+data.description+'</p><div name="menu" class="menu"><i class="material-icons">more_vert</i><div class="options"><div class="delete" name="delete"><i class="material-icons">delete</i></div><div class="edit" name="edit"><i class="material-icons">edit</i></div></div></div> \
+            <div name="highlight" class="highlight"><i class="material-icons">grade</i></div> \
+<div name="done" class="done"><i class="material-icons">done</i></div>';
         
         if(document.getElementsByName("task")[0] == null) {
             document.getElementById("tasks").appendChild(elem);
@@ -101,10 +104,20 @@ function loadTasks() {
         
         if(data.status){
             var elem = document.createElement("div");
-            elem.className = "task";
+            if("highlighted" in data){
+                if(data.highlighted){
+                    elem.className = "task highlighted";
+                } else {
+                    elem.className = "task";
+                }
+            } else {
+                elem.className = "task";
+            }
             elem.id = data.id;
             elem.setAttribute("name", "task");
-            elem.innerHTML = '<h1>'+data.title+'</h1><p>'+data.description+'</p><div name="menu" class="menu"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" display: block;"><g><path d="M12,8c1.1,0,2-0.9,2-2s-0.9-2-2-2c-1.1,0-2,0.9-2,2S10.9,8,12,8z M12,10c-1.1,0-2,0.9-2,2s0.9,2,2,2c1.1,0,2-0.9,2-2S13.1,10,12,10z M12,16c-1.1,0-2,0.9-2,2s0.9,2,2,2c1.1,0,2-0.9,2-2S13.1,16,12,16z"></path></g></svg><div class="options"><div class="delete" name="delete"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><polygon points="19,6.4 17.6,5 12,10.6 6.4,5 5,6.4 10.6,12 5,17.6 6.4,19 12,13.4 17.6,19 19,17.6 13.4,12 "></polygon></g></svg></div><div class="edit" name="edit"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><path d="M3,17.2V21h3.8L17.8,9.9l-3.8-3.8L3,17.2z M20.7,7c0.4-0.4,0.4-1,0-1.4l-2.3-2.3c-0.4-0.4-1-0.4-1.4,0l-1.8,1.8l3.8,3.8L20.7,7z"></path></g></svg></div></div></div><div name="done" class="done"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><polygon points="9,16.2 4.8,12 3.4,13.4 9,19 21,7 19.6,5.6 "></polygon></g></svg></div>';
+            elem.innerHTML = '<h1>'+data.title+'</h1><p>'+data.description+'</p><div name="menu" class="menu"><i class="material-icons">more_vert</i><div class="options"><div class="delete" name="delete"><i class="material-icons">delete</i></div><div class="edit" name="edit"><i class="material-icons">edit</i></div></div></div> \
+            <div name="highlight" class="highlight"><i class="material-icons">grade</i></div> \
+<div name="done" class="done"><i class="material-icons">done</i></div>';
             wrapper.appendChild(elem);
         }
     }
@@ -117,7 +130,7 @@ function loadTasks() {
             elem.className = "task finished";
             elem.id = data.id;
             elem.setAttribute("name", "task");
-            elem.innerHTML = '<h1>'+data.title+'</h1><p>'+data.description+'</p><div class="date">Finished at '+data.ended+'</div><div name="menu" class="menu"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" display: block;"><g><path d="M12,8c1.1,0,2-0.9,2-2s-0.9-2-2-2c-1.1,0-2,0.9-2,2S10.9,8,12,8z M12,10c-1.1,0-2,0.9-2,2s0.9,2,2,2c1.1,0,2-0.9,2-2S13.1,10,12,10z M12,16c-1.1,0-2,0.9-2,2s0.9,2,2,2c1.1,0,2-0.9,2-2S13.1,16,12,16z"></path></g></svg><div class="options"><div class="delete" name="delete"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><polygon points="19,6.4 17.6,5 12,10.6 6.4,5 5,6.4 10.6,12 5,17.6 6.4,19 12,13.4 17.6,19 19,17.6 13.4,12 "></polygon></g></svg></div><div class="edit" name="edit"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><path d="M3,17.2V21h3.8L17.8,9.9l-3.8-3.8L3,17.2z M20.7,7c0.4-0.4,0.4-1,0-1.4l-2.3-2.3c-0.4-0.4-1-0.4-1.4,0l-1.8,1.8l3.8,3.8L20.7,7z"></path></g></svg></div></div></div><div name="restore" class="restore"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><path d="M17.6,6.4C16.2,4.9,14.2,4,12,4c-4.4,0-8,3.6-8,8s3.6,8,8,8c3.7,0,6.8-2.6,7.7-6h-2.1c-0.8,2.3-3,4-5.6,4c-3.3,0-6-2.7-6-6s2.7-6,6-6c1.7,0,3.1,0.7,4.2,1.8L13,11h7V4L17.6,6.4z"></path></g></svg></div>';
+            elem.innerHTML = '<h1>'+data.title+'</h1><p>'+data.description+'</p><div class="date">Finished at '+data.ended+'</div><div name="menu" class="menu"><i class="material-icons">more_vert</i><div class="options"><div class="delete" name="delete"><i class="material-icons">delete</i></div><div class="edit" name="edit"><i class="material-icons">edit</i></div></div></div><div name="restore" class="restore"><i class="material-icons">restore</i></div>';
             wrapper.appendChild(elem);
         }
     }
@@ -130,6 +143,7 @@ function updateEventListeners() {
         done = document.getElementsByName("done"),
         menu = document.getElementsByName("menu"),
         edit = document.getElementsByName("edit"),
+        highlight = document.getElementsByName("highlight"),
         restore = document.getElementsByName("restore");
     
     for(i=0; i<del.length; i++){
@@ -156,6 +170,16 @@ function updateEventListeners() {
         edit[i].removeEventListener("click", editTask, false);
         edit[i].addEventListener("click", editTask, false);
     }
+    
+    for(i=0; i<edit.length; i++){
+        edit[i].removeEventListener("click", editTask, false);
+        edit[i].addEventListener("click", editTask, false);
+    }
+    
+    for(i=0; i<highlight.length; i++){
+        highlight[i].removeEventListener("click", highlightTask, false);
+        highlight[i].addEventListener("click", highlightTask, false);
+    }
 }
 
 function updatePosition() {
@@ -164,7 +188,17 @@ function updatePosition() {
         counter = 0;
     
     for(i=0; i<cards.length; i++) {
-        if(cards[i].className != "task finished") {
+        if(cards[i].classList.contains("highlighted")) {
+            cards[i].style.top = above+(6*counter)+"px";
+            cards[i].style.height = cards[i].clientHeight+"px";
+            
+            above += cards[i].clientHeight;
+            counter++;
+        }
+    }
+    
+    for(i=0; i<cards.length; i++) {
+        if(!cards[i].classList.contains("highlighted") && !cards[i].classList.contains("finished")) {
             cards[i].style.top = above+(6*counter)+"px";
             cards[i].style.height = cards[i].clientHeight+"px";
             
@@ -175,7 +209,7 @@ function updatePosition() {
     
     for(i=0; i<cards.length; i++) {
         
-        if(cards[i].className == "task finished") {
+        if(cards[i].classList.contains("finished")) {
             cards[i].style.top = above+(6*counter)+"px";
             cards[i].style.height = cards[i].clientHeight+"px";
             
@@ -246,7 +280,7 @@ function restoreTask() {
             localStorage.setItem("tasks", JSON.stringify(tasks));
             
             card.className = "task";
-            card.innerHTML = '<h1>'+task.title+'</h1><p>'+task.description+'</p><div name="menu" class="menu"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" display: block;"><g><path d="M12,8c1.1,0,2-0.9,2-2s-0.9-2-2-2c-1.1,0-2,0.9-2,2S10.9,8,12,8z M12,10c-1.1,0-2,0.9-2,2s0.9,2,2,2c1.1,0,2-0.9,2-2S13.1,10,12,10z M12,16c-1.1,0-2,0.9-2,2s0.9,2,2,2c1.1,0,2-0.9,2-2S13.1,16,12,16z"></path></g></svg><div class="options"><div class="delete" name="delete"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><polygon points="19,6.4 17.6,5 12,10.6 6.4,5 5,6.4 10.6,12 5,17.6 6.4,19 12,13.4 17.6,19 19,17.6 13.4,12 "></polygon></g></svg></div><div class="edit" name="edit"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><path d="M3,17.2V21h3.8L17.8,9.9l-3.8-3.8L3,17.2z M20.7,7c0.4-0.4,0.4-1,0-1.4l-2.3-2.3c-0.4-0.4-1-0.4-1.4,0l-1.8,1.8l3.8,3.8L20.7,7z"></path></g></svg></div></div></div><div name="done" class="done"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><polygon points="9,16.2 4.8,12 3.4,13.4 9,19 21,7 19.6,5.6 "></polygon></g></svg></div>';
+            card.innerHTML = '<h1>'+task.title+'</h1><p>'+task.description+'</p><div name="menu" class="menu"><i class="material-icons">more_vert</i><div class="options"><div class="delete" name="delete"><i class="material-icons">delete</i></div><div class="edit" name="edit"><i class="material-icons">edit</i></div></div></div><div name="done" class="done"><i class="material-icons">done</i></div>';
             
             setTimeout(updatePosition,5);
         }
@@ -281,7 +315,7 @@ function finishTask() {
             
             card.className = "task finished";
             
-            card.innerHTML = '<h1>'+task.title+'</h1><p>'+task.description+'</p><div class="date">Finished at '+day+"/"+month+"/"+year+" "+hour+":"+minute+'</div><div name="menu" class="menu"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" display: block;"><g><path d="M12,8c1.1,0,2-0.9,2-2s-0.9-2-2-2c-1.1,0-2,0.9-2,2S10.9,8,12,8z M12,10c-1.1,0-2,0.9-2,2s0.9,2,2,2c1.1,0,2-0.9,2-2S13.1,10,12,10z M12,16c-1.1,0-2,0.9-2,2s0.9,2,2,2c1.1,0,2-0.9,2-2S13.1,16,12,16z"></path></g></svg><div class="options"><div class="delete" name="delete"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><polygon points="19,6.4 17.6,5 12,10.6 6.4,5 5,6.4 10.6,12 5,17.6 6.4,19 12,13.4 17.6,19 19,17.6 13.4,12 "></polygon></g></svg></div><div class="edit" name="edit"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><path d="M3,17.2V21h3.8L17.8,9.9l-3.8-3.8L3,17.2z M20.7,7c0.4-0.4,0.4-1,0-1.4l-2.3-2.3c-0.4-0.4-1-0.4-1.4,0l-1.8,1.8l3.8,3.8L20.7,7z"></path></g></svg></div></div></div><div name="restore" class="restore"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><path d="M17.6,6.4C16.2,4.9,14.2,4,12,4c-4.4,0-8,3.6-8,8s3.6,8,8,8c3.7,0,6.8-2.6,7.7-6h-2.1c-0.8,2.3-3,4-5.6,4c-3.3,0-6-2.7-6-6s2.7-6,6-6c1.7,0,3.1,0.7,4.2,1.8L13,11h7V4L17.6,6.4z"></path></g></svg></div>'
+            card.innerHTML = '<h1>'+task.title+'</h1><p>'+task.description+'</p><div class="date">Finished at '+day+"/"+month+"/"+year+" "+hour+":"+minute+'</div><div name="menu" class="menu"><i class="material-icons">more_vert</i><div class="options"><div class="delete" name="delete"><i class="material-icons">delete</i></div><div class="edit" name="edit"><i class="material-icons">edit</i></div></div></div><div name="restore" class="restore"><i class="material-icons">restore</i></div>'
             
             setTimeout(updatePosition,5);
             
@@ -305,7 +339,6 @@ function openMenu() {
 function editTask() {
     this.removeEventListener("click", editTask, false);
     this.parentElement.className = "options";
-    this.parentElement.parentElement.style.fill = "";
     
     var card = this.parentElement.parentElement.parentElement,
         bg = document.getElementById("background"),
@@ -317,6 +350,7 @@ function editTask() {
     
     card.className = "edit task";
     show(bg);
+    card.style.zIndex = "200";
     setTimeout(function(){
         bg.style.opacity = "1";
     },1);
@@ -366,10 +400,12 @@ function editTask() {
                 
                 if(task.status){
                 
-                    card.innerHTML = '<h1>'+document.getElementById("editTitle").value+'</h1><p>'+document.getElementById("editDescription").value+'</p><div name="menu" class="menu"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" display: block;"><g><path d="M12,8c1.1,0,2-0.9,2-2s-0.9-2-2-2c-1.1,0-2,0.9-2,2S10.9,8,12,8z M12,10c-1.1,0-2,0.9-2,2s0.9,2,2,2c1.1,0,2-0.9,2-2S13.1,10,12,10z M12,16c-1.1,0-2,0.9-2,2s0.9,2,2,2c1.1,0,2-0.9,2-2S13.1,16,12,16z"></path></g></svg><div class="options"><div class="delete" name="delete"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><polygon points="19,6.4 17.6,5 12,10.6 6.4,5 5,6.4 10.6,12 5,17.6 6.4,19 12,13.4 17.6,19 19,17.6 13.4,12 "></polygon></g></svg></div><div class="edit" name="edit"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><path d="M3,17.2V21h3.8L17.8,9.9l-3.8-3.8L3,17.2z M20.7,7c0.4-0.4,0.4-1,0-1.4l-2.3-2.3c-0.4-0.4-1-0.4-1.4,0l-1.8,1.8l3.8,3.8L20.7,7z"></path></g></svg></div></div></div><div name="done" class="done"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><polygon points="9,16.2 4.8,12 3.4,13.4 9,19 21,7 19.6,5.6 "></polygon></g></svg></div>';
+                    card.innerHTML = '<h1>'+document.getElementById("editTitle").value+'</h1><p>'+document.getElementById("editDescription").value+'</p><div name="menu" class="menu"><i class="material-icons">more_vert</i><div class="options"><div class="delete" name="delete"><i class="material-icons">delete</i></div><div class="edit" name="edit"><i class="material-icons">edit</i></div></div></div> \
+            <div name="highlight" class="highlight"><i class="material-icons">grade</i></div> \
+<div name="done" class="done"><i class="material-icons">done</i></div>';
                 } else {
                     
-                    card.innerHTML = '<h1>'+document.getElementById("editTitle").value+'</h1><p>'+document.getElementById("editDescription").value+'</p><div class="date">Finished at '+task.ended+'</div><div name="menu" class="menu"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" display: block;"><g><path d="M12,8c1.1,0,2-0.9,2-2s-0.9-2-2-2c-1.1,0-2,0.9-2,2S10.9,8,12,8z M12,10c-1.1,0-2,0.9-2,2s0.9,2,2,2c1.1,0,2-0.9,2-2S13.1,10,12,10z M12,16c-1.1,0-2,0.9-2,2s0.9,2,2,2c1.1,0,2-0.9,2-2S13.1,16,12,16z"></path></g></svg><div class="options"><div class="delete" name="delete"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><polygon points="19,6.4 17.6,5 12,10.6 6.4,5 5,6.4 10.6,12 5,17.6 6.4,19 12,13.4 17.6,19 19,17.6 13.4,12 "></polygon></g></svg></div><div class="edit" name="edit"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><path d="M3,17.2V21h3.8L17.8,9.9l-3.8-3.8L3,17.2z M20.7,7c0.4-0.4,0.4-1,0-1.4l-2.3-2.3c-0.4-0.4-1-0.4-1.4,0l-1.8,1.8l3.8,3.8L20.7,7z"></path></g></svg></div></div></div><div name="restore" class="restore"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="display: block;"><g><path d="M17.6,6.4C16.2,4.9,14.2,4,12,4c-4.4,0-8,3.6-8,8s3.6,8,8,8c3.7,0,6.8-2.6,7.7-6h-2.1c-0.8,2.3-3,4-5.6,4c-3.3,0-6-2.7-6-6s2.7-6,6-6c1.7,0,3.1,0.7,4.2,1.8L13,11h7V4L17.6,6.4z"></path></g></svg></div>';
+                    card.innerHTML = '<h1>'+document.getElementById("editTitle").value+'</h1><p>'+document.getElementById("editDescription").value+'</p><div class="date">Finished at '+task.ended+'</div><div name="menu" class="menu"><i class="material-icons">more_vert</i><div class="options"><div class="delete" name="delete"><i class="material-icons">delete</i></div><div class="edit" name="edit"><i class="material-icons">edit</i></div></div></div><div name="restore" class="restore"><i class="material-icons">restore</i></div>';
                     
                 }
                 
@@ -385,6 +421,7 @@ function editTask() {
                 bg.style.opacity = "0";
                 setTimeout(function(){
                     hide(bg);
+                    card.style.zIndex = "";
                 },500);
                 document.body.style.overflowY = "auto";
                 addTask.style.zIndex = "";
@@ -400,4 +437,41 @@ function editTask() {
         }
     }
     
+}
+
+function highlightTask() {
+    var card = this.parentElement,
+        id = card.id,
+        state;
+    
+    if (card.classList.contains("highlighted")) {
+        card.classList.toggle("highlighted");
+        state = false;
+        
+    } else {
+        card.classList.toggle("highlighted");
+        state = true;
+    }
+        
+        
+    for(i=0; i<tasks.length; i++) {
+        if(JSON.parse(tasks[i]).id == id) {
+            var task = JSON.parse(tasks[i]);
+
+            tasks[i] = JSON.stringify({
+                title:  task.title, 
+                description: task.description,
+                id: task.id,
+                status: true,
+                ended: null,
+                highlighted: state
+            });
+
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+
+            setTimeout(updatePosition, 5);
+
+            break;
+        }  
+    }
 }

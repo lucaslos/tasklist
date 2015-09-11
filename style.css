@@ -3,7 +3,7 @@
     -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
-    font-family: source-sans-pro;
+    font-family: 'Roboto', sans-serif;
     
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -18,7 +18,7 @@ body {
     width: 100%;
     height: 100%;
     
-    font-family: source-sans-pro;
+    font-family: 'Roboto';
     min-width: 600px;
     background: #eee;
     color: #333;
@@ -41,7 +41,7 @@ body > h1 {
     
     text-align: left;
     font-size: 58px;
-    font-weight: 200;
+    font-weight: 300;
     line-height: 90px;
 }
 
@@ -87,8 +87,8 @@ body > .wrapper {
                 0 2px 10px 0 rgba(0, 0, 0, 0.16);
     border-radius: 25px;
     
-    background: #5677fc;
-    transition: 0.5s ease-out, background 0.2s;
+    background: #1E88E5;
+    transition: 0.3s ease-out, background 0.2s;
 }
 
 #addTaskButtom {
@@ -108,18 +108,11 @@ body > .wrapper {
     cursor: pointer;
     border-radius: 25px;
     
-    transition: 0.5s ease-out;
+    transition: 0.3s ease-out;
 }
 
-#addTask:hover {
-    background: #4e6cef;
-}
-
-#addTask.expanded:hover {
-    background: #5677fc;
-}
-
-#addTaskButtom svg {
+#addTaskButtom i {
+    font-size: 26px;
     fill: #fff;
     position: absolute;
     left: 50%;
@@ -138,7 +131,7 @@ body > .wrapper {
     width: 26px;
 }
 
-.expanded #addTaskButtom svg:hover {
+.expanded #addTaskButtom i:hover {
     fill: #ddd;
 }
 
@@ -147,12 +140,11 @@ body > .wrapper {
     margin-right: -200px;
     
     width: 400px;
-    height: 252px;
     
-    border-radius: 4px;
+    height: 249px;
+    border-radius: 0;
     
-    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2),
-                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 17px 50px 0 rgba(0, 0, 0, 0.19), 0 12px 15px 0 rgba(0, 0, 0, 0.24);
 }
 
 #addTask .wrapper {
@@ -174,31 +166,27 @@ body > .wrapper {
     opacity: 1 !important;
 }
 
-label {
-    position: relative;
-    float: left;
-    width: 340px;
-    height: 28px;
-    font-size: 20px;
-    
-    line-height: 40px;
-    
-    margin-bottom: 4px;
-    color: #fff;
+::-webkit-input-placeholder {
+   color: #0D47A1;
 }
 
 #title {
     position: relative;
     width: 370px;
     
+    margin-top: 30px;
     float: left;
     border: none;
-    height: 28px;
-    
-    border-radius: 2px;
-    
+    height: 40px;
     padding-left: 5px;
-    box-shadow: inset 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    
+    font-size: 20px;
+    color: #fff;
+    
+    background: none;
+    border-bottom: 2px solid #0D47A1;
+    
+    transition: 0.3s ease-out;
 }
 
 #description {
@@ -207,37 +195,49 @@ label {
     max-width: 370px;
     max-height: 82px;
     
+    margin-top: 10px;
     padding-left: 5px;
     float: left;
     border: none;
     height: 82px;
     
-    border-radius: 2px;
-    box-shadow: inset 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    color: #fff;
+    
+    background: none;
+    border-bottom: 2px solid #0D47A1;
+    transition: 0.3s ease-out;
+}
+
+#description:focus,
+#title:focus {
+    background: rgba(0, 0, 0, 0.05);
+    outline: none;
+    border-bottom: 2px solid #fff;
 }
 
 #createTask {
     position: relative;
     float: right;
     
-    height: 36px;
-    line-height: 36px;
+    height: 40px;
+    line-height: 40px;
     padding: 0 20px;
     margin: 14px -30px;
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: 400;
    
-    background: #fff;
     border-radius: 2px;
-    color: #536dfe;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26),
-                0 2px 10px 0 rgba(0, 0, 0, 0.16);
+    color: #fff;
     cursor: pointer;
     
-    transition: 0.3s ease-out;
+    background: #1976D2;
+    
+    transition: 0.2s ease-out;
 }
 
 #createTask:hover {
-    background: #fff;
+    background: #1565C0;
 }
 
 #createTask:active {
@@ -252,11 +252,9 @@ label {
     min-height: 70px;
     
     background: #fff;
-    border-radius: 2px;
     
     left: 10px;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26),
-                0 2px 10px 0 rgba(0, 0, 0, 0.16);
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.10), 0 2px 5px 0 rgba(0, 0, 0, 0.20);
     transition: 0.5s ease-out;
 }
 
@@ -293,7 +291,8 @@ label {
 .delete,
 .done,
 .restore,
-.menu {
+.menu,
+.highlight{
     position: absolute;
     
     height: 24px;
@@ -305,8 +304,8 @@ label {
     color: #555;
 }
 
-svg {
-/*    transition: 0.2s ease-out;*/
+.task i {
+    transition: 0.2s ease-out;
 }
 
 .menu {
@@ -317,14 +316,14 @@ svg {
     right: 4px;
 }
 
-.menu > svg {
+.menu > i {
     position: absolute;
     z-index: 1;
     right: 0;
 }
 
-.menu > svg:hover {
-    fill: #5677fc;
+.menu > i:hover {
+    color: #888;
 }
 
 .options {
@@ -346,11 +345,11 @@ svg {
     transition: 0.2s ease-out;
 }
 
-.options svg {
+.options i {
     opacity: 0;
 }
 
-.options.expanded svg {
+.options.expanded i {
     opacity: 1;
 }
 
@@ -369,17 +368,37 @@ svg {
     height: 24px;
     width: 24px;
     
-    fill: #fff;
+    color: #ddd;
     
     cursor: pointer;
 }
 
 .delete:hover {
-    fill: #e51c23;
+    color: #F44336;
 }
 
-.edit:hover {
-    fill: #42BD41;
+.options .edit:hover {
+    color: #fff;
+}
+
+.highlight {
+    bottom: 4px;
+    right: 32px;
+    
+    color: #aaa;
+}
+
+.highlight i {
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.highlight:hover {
+    color: #1E88E5;
+}
+
+.highlighted .highlight {
+    color: #1E88E5 !important;
 }
 
 .done {
@@ -387,8 +406,8 @@ svg {
     right: 4px;
 }
 
-.done svg:hover {
-    fill: #42BD41;
+.done i:hover {
+    color: #42BD41;
 }
 
 .restore {
@@ -397,8 +416,8 @@ svg {
     right: 5px;
 }
 
-.restore svg:hover {
-    fill: #42BD41;
+.restore i:hover {
+    color: #42BD41;
 }
 
 .finished {
@@ -411,6 +430,9 @@ svg {
 }
 
 .task .date {
+    position: absolute;
+    
+    bottom: 0;
     font-size: 14px;
     padding: 0 0 5px 10px;
 }
@@ -418,7 +440,7 @@ svg {
 .edit.task {
     z-index: 200;
     
-    height: 284px !important;
+    height: 260px !important;
     width: 400px;
     left: 100px;
     
@@ -440,86 +462,92 @@ svg {
     padding-left: 20px;
     padding-top: 20px;
     
-    font-weight: 300;
+    font-weight: 400;
+}
+
+.edit ::-webkit-input-placeholder {
+   color: #aaa;
+}
+
+.edit.task input {
+    position: relative;
+    width: 370px;
+    
+    margin-left: 15px;
+    float: left;
+    border: none;
+    height: 40px;
+    padding-left: 5px;
+    
+    font-size: 20px;
+    color: #333;
+    
+    background: none;
+    border-bottom: 2px solid #aaa;
+    
+    transition: 0.3s ease-out;
 }
 
 .edit.task textarea {
     position: relative;
     width: 370px;
     max-width: 370px;
-    max-height: 100px;
-    right: 15px;
+    max-height: 82px;
+    
     margin-top: 10px;
-    margin-left: 200px;
-    
-    float: right;
-    border: none;
-    height: 100px;
-    clear: left;
-    
-/*    border: 1px solid #5677fc;*/
-    border-radius: 2px;
-    font-size: 18px;
-    background: #eee;
-    
+    margin-left: 15px;
     padding-left: 5px;
+    float: left;
+    border: none;
+    height: 82px;
     
-    box-shadow: inset 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    color: #333;
+    
+    background: none;
+    border-bottom: 2px solid #aaa;
+    transition: 0.3s ease-out;
 }
 
-.edit.task input {
-    position: relative;
-    width: 370px;
-    right: 15px;
-    margin-top: 10px;
-    margin-left: 200px;
-    
-    float: right;
-    border: none;
-    height: 32px;
-    clear: left;
-    
-/*    border-bottom: 2px solid #5677fc;*/
-    border-radius: 2px;
-    font-size: 18px;
-    background: #eee;
-    padding-left: 5px;
-    
-    box-shadow: inset 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+.edit.task textarea:focus,
+.edit.task input:focus {
+    outline: none;
+    border-bottom: 2px solid #1976D2;
 }
 
-#save, #cancel {
+#save,
+#cancel {
     position: relative;
     float: right;
     
-    height: 36px;
-    line-height: 36px;
-    padding: 0 20px;
-    margin: 20px 15px;
-    font-size: 20px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 15px;
+    margin-top: 15px;
+    margin-right: 15px;
    
-    background: #536dfe;
+    font-size: 18px;
+    font-weight: 500;
+    
+    background: #fff;
     border-radius: 2px;
-    color: #fff;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26),
-                0 2px 10px 0 rgba(0, 0, 0, 0.16);
+    color: #1976D2;
     cursor: pointer;
     
-    transition: 0.3s ease-out;
+    transition: 0.2s ease-out;
 }
 
 #cancel {
     margin-right: 5px;
-    color: #fff;
 }
 
 #save:hover,
 #cancel:hover {
-    background: #3d5afe;
+    background: #eee;
 }
 
 #save:active,
 #cancel:active {
-    box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.26);
-    background: #3d5afe;
+    box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.40);
+    background: #ddd;
 }
