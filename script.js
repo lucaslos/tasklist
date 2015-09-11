@@ -272,7 +272,8 @@ function restoreTask() {
                 description: task.description,
                 id: task.id,
                 status: true,
-                ended: null
+                ended: null,
+                highlighted: false
             });
             
             tasks.unshift(tasks.pop());
@@ -280,7 +281,9 @@ function restoreTask() {
             localStorage.setItem("tasks", JSON.stringify(tasks));
             
             card.className = "task";
-            card.innerHTML = '<h1>'+task.title+'</h1><p>'+task.description+'</p><div name="menu" class="menu"><i class="material-icons">more_vert</i><div class="options"><div class="delete" name="delete"><i class="material-icons">delete</i></div><div class="edit" name="edit"><i class="material-icons">edit</i></div></div></div><div name="done" class="done"><i class="material-icons">done</i></div>';
+            card.innerHTML = '<h1>'+task.title+'</h1><p>'+task.description+'</p><div name="menu" class="menu"><i class="material-icons">more_vert</i><div class="options"><div class="delete" name="delete"><i class="material-icons">delete</i></div><div class="edit" name="edit"><i class="material-icons">edit</i></div></div></div> \
+            <div name="highlight" class="highlight"><i class="material-icons">grade</i></div> \
+<div name="done" class="done"><i class="material-icons">done</i></div>';
             
             setTimeout(updatePosition,5);
         }
