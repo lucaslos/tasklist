@@ -187,7 +187,7 @@ function updatePosition() {
         above = 0,
         counter = 0;
     
-    for(i=0; i<cards.length; i++) {
+    for(i=cards.length-1; i>=0; i--) {
         if(cards[i].classList.contains("highlighted")) {
             cards[i].style.top = above+(6*counter)+"px";
             cards[i].style.height = cards[i].clientHeight+"px";
